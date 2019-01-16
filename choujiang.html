@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>Mercku抽奖</title> 
+<style>
+
+#title {
+	width: 1200px;
+	margin-top: 100px;
+	text-align: center;
+	color: white;
+	z-index: 2;
+}
+
+#bgImage
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index:-1;
+}
+
+#prize {
+	position: absolute;
+	left: 390px;
+	top: 170px;
+	width: 200px;
+	height: 200px;
+	border-radius: 5px;
+}
+
+#prizeLabel {
+	position: absolute;
+	text-align: center;
+	color: white;
+	left: 390px;
+	top: 380px;
+	width: 200px;
+	height: 200px;
+}
+
+#photo {
+	position: absolute;
+	left: 610px;
+	top: 170px;
+	width: 200px;
+	height: 200px;
+	border-radius: 5px;
+}
+
+#nameLabel {
+	position: absolute;
+	text-align: center;
+	color: white;
+	left: 610px;
+	top: 380px;
+	width: 200px;
+	height: 200px;
+}
+
+#winnerTitle {
+	position: absolute;
+	text-align: center;
+	color: white;
+	left: 550px;
+	width: 100px;
+	top: 430px;
+	height: 25px;
+}
+
+#winnerOneList {
+	position: absolute;
+	text-align: left;
+	color: white;
+	left: 100px;
+	width: 1000px;
+	top: 470px;
+	height: 30px;
+}
+
+#winnerTwoList {
+	position: absolute;
+	text-align: left;
+	color: white;
+	left: 100px;
+	width: 1000px;
+	top: 500px;
+	height: 30px;
+}
+
+#winnerThreeList {
+	position: absolute;
+	text-align: left;
+	color: white;
+	left: 100px;
+	width: 1000px;
+	top: 530px;
+	height: 30px;
+}
+
+#winnerFourList {
+	position: absolute;
+	text-align: left;
+	color: white;
+	left: 100px;
+	width: 1000px;
+	top: 560px;
+	height: 30px;
+}
+
+#winnerFiveList {
+	position: absolute;
+	text-align: left;
+	color: white;
+	left: 100px;
+	width: 1000px;
+	top: 590px;
+	height: 50px;
+}
+
+.btnArea {
+	position: absolute;
+    left: 830px;
+    top: 180px;
+}
+
+.dropbtn {
+	position: absolute;
+    background-color: #FF3333;
+    color: white;
+    left: 0px;
+    top: 25px;
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    border: 2;
+    border-color: white;
+    border-radius: 5px;
+    outline: none;
+}
+
+.starbtn {
+	position: absolute;
+    background-color: #FF3333;
+    color: white;
+    left: 0px;
+    top: 100px;
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    border: 2;
+    border-color: white;
+    border-radius: 5px;
+    outline: none;
+}
+
+.starbtn[disabled] {
+    background-color: #999999;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 75px;
+    background-color: white;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 999;
+}
+
+.dropdown-content p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 5;
+}
+
+.dropdown-content p:hover {
+	background-color: gray;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+</style>
+</head>
+
+<body>
+<h1 id="title">Mercku年会抽奖</h1>
+
+<div class="btnArea">
+	<button class="starbtn" id="starbtn" onclick="starBtnClick()" disabled="disabled">开始抽奖</button>
+	<div class="dropdown">
+	  <button id="prizeBtn" class="dropbtn">选择奖品</button>
+	  	<div class="dropdown-content">
+	    	<p class="prizeLabel" onclick="firstPrizeBtnClick()">一等奖</p>
+	    	<p class="prizeLabel" onclick="secondPrizeBtnClick()">二等奖</p>
+	    	<p class="prizeLabel" onclick="thirdPrizeBtnClick()">三等奖</p>
+	    	<p class="prizeLabel" onclick="fourthPrizeBtnClick()">四等奖</p>
+	    	<p class="prizeLabel" onclick="fifthPrizeBtnClick()">五等奖</p>
+  		</div>
+	</div>
+</div>
+
+<img id="bgImage" src="./bgImage.jpeg" width='1200' height='690' z-index='-1'>
+<img id="prize" src="./default.jpg">
+<img id="photo" src="./default.jpg">
+<p id="nameLabel">姓名</p>
+<p id="prizeLabel">奖品</p>
+<p id="winnerTitle">获奖名单</p>
+<p id="winnerOneList">一等奖: </p>
+<p id="winnerTwoList">二等奖: </p>
+<p id="winnerThreeList">三等奖: </p>
+<p id="winnerFourList">四等奖: </p>
+<p id="winnerFiveList">五等奖: </p>
+
+</body>
+<script>
+
+	var peopleArray = new Array("张三", "李四", "王麻子", "尼古拉斯赵四", "谢广坤", "赵日天", "龙傲天", "谢良辰");
+
+	var peopleIconArray = new Array("./xieguangkun.jpeg", "./zhaoritian.jpg", "./longaotian.jpg", "./zhaoritian.jpg", "./xieguangkun.jpeg", "./zhaoritian.jpg", "./longaotian.jpg", "./zhaoritian.jpg");
+
+	var prizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+
+	var prizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+
+	// 当前选中的奖品等级
+	var currentPrizeLevel;
+
+	// 当前选中的人
+	var currentSelectedIndex;
+
+	// 计时器
+	var  timer;
+
+	// 是否正在抽奖中
+	var isDrawing = false;
+
+	// 抽奖是否已经结束
+	var isDrawEnd = false;
+
+	function firstPrizeBtnClick() {
+		if (!isDrawEnd) {
+			document.getElementById('starbtn').disabled = false;
+		}
+		document.getElementById('prizeBtn').innerHTML = '一等奖';
+		document.getElementById('prizeLabel').innerHTML = prizeArray[0];
+		document.getElementById('prize').src = prizeIconArray[0];
+		currentPrizeLevel = 1;
+	}
+
+	function secondPrizeBtnClick() {
+		if (!isDrawEnd) {
+			document.getElementById('starbtn').disabled = false;
+		}
+		document.getElementById('prizeBtn').innerHTML = '二等奖';
+		document.getElementById('prizeLabel').innerHTML = prizeArray[1];
+		document.getElementById('prize').src = prizeIconArray[1];
+		currentPrizeLevel = 2;
+	}
+
+	function thirdPrizeBtnClick() {
+		if (!isDrawEnd) {
+			document.getElementById('starbtn').disabled = false;
+		}
+		document.getElementById('prizeBtn').innerHTML = '三等奖';
+		document.getElementById('prizeLabel').innerHTML = prizeArray[2];
+		document.getElementById('prize').src = prizeIconArray[2];
+		currentPrizeLevel = 3;
+	}
+
+	function fourthPrizeBtnClick() {
+		if (!isDrawEnd) {
+			document.getElementById('starbtn').disabled = false;
+		}
+		document.getElementById('prizeBtn').innerHTML = '四等奖';
+		document.getElementById('prizeLabel').innerHTML = prizeArray[3];
+		document.getElementById('prize').src = prizeIconArray[3];
+		currentPrizeLevel = 4;
+	}
+
+	function fifthPrizeBtnClick() {
+		if (!isDrawEnd) {
+			document.getElementById('starbtn').disabled = false;
+		}
+		document.getElementById('prizeBtn').innerHTML = '五等奖';
+		document.getElementById('prizeLabel').innerHTML = prizeArray[4];
+		document.getElementById('prize').src = prizeIconArray[4];
+		currentPrizeLevel = 5;
+	}
+
+	// 点击开始抽奖按钮
+	function starBtnClick() {
+		var btn =document.getElementById('starbtn');
+		if (!isDrawing) {
+			// 如果现在是处于停止状态，则开始抽奖
+			// 必须在剩余人数大于0的时候才能开始抽奖
+			if (peopleArray.length > 0) {
+				isDrawing = true;
+				btn.innerHTML='停止抽奖';
+				timer = window.setInterval("starDraw()", 50);
+			}
+		} else {
+			// 如果现在是处于抽奖状态，则停止抽奖
+			isDrawing = false;
+			btn.innerHTML='开始抽奖';
+			window.clearInterval(timer);
+			var switchList
+			switch (currentPrizeLevel) {
+				case 1:
+					switchList = "winnerOneList";
+					break;
+				case 2:
+					switchList = "winnerTwoList";
+					break;
+				case 3:
+					switchList = "winnerThreeList";
+					break;
+				case 4:
+					switchList = "winnerFourList";
+					break;
+				case 5:
+					switchList = "winnerFiveList";
+					break;
+				default:
+					break;
+
+			}
+			var list = document.getElementById(switchList)
+			list.innerHTML = list.innerHTML + " " + peopleArray[currentSelectedIndex];
+			if (peopleArray.length > 0) {
+				peopleArray.splice(currentSelectedIndex,1);
+			};
+			if (peopleArray.length == 0) {
+				btn.innerHTML='抽奖结束';
+				btn.disabled = true;
+				isDrawEnd = true;
+			};
+		};
+	}
+
+	function starDraw() {
+		var nameLabel = document.getElementById('nameLabel');
+		var peopleIcon = document.getElementById('photo');
+		var index = randomNum(0, peopleArray.length - 1);
+		nameLabel.innerHTML = peopleArray[index];
+		peopleIcon.src = peopleIconArray[index];
+		currentSelectedIndex = index
+	}
+
+	//生成从minNum到maxNum的随机整数
+	function randomNum(minNum,maxNum) { 
+	    switch(arguments.length){ 
+	        case 1: 
+	            return parseInt(Math.random()*minNum+1,10); 
+	        break; 
+	        case 2: 
+	            return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
+	        break; 
+	        default: 
+	            return 0; 
+	        break; 
+	    } 
+	} 
+
+</script>
+</html>
