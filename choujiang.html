@@ -224,19 +224,43 @@
 </body>
 <script>
 
-	var peopleArray = new Array("张三", "李四", "王麻子", "尼古拉斯赵四", "谢广坤", "赵日天", "龙傲天", "谢良辰");
+	var peopleArray = new Array("Alex", "史歌", "薛瑞尼", "金荣皓", "李爽", "冯磊", "钟渊", "桂强", "周陵涛", "范鹏辉", "李佳鑫", "王侠", "但光军", "杨朋飞", "李施超", "万晓林", "杨春晖", "林浩泓", "施一星", "林娟", "杨雨濛", "滕佳林", "罗鑫", "肖炯", "黎盺岚", "Rosie", "唐书琴", "刘慧", "冉艳琼", "郑颖怡", "刘田丹", "仇泳琳");
 
-	var peopleIconArray = new Array("./xieguangkun.jpeg", "./zhaoritian.jpg", "./longaotian.jpg", "./zhaoritian.jpg", "./xieguangkun.jpeg", "./zhaoritian.jpg", "./longaotian.jpg", "./zhaoritian.jpg");
+	var peopleIconArray = new Array("./alex.jpg", "./shige.jpg", "./xueruini.jpg", "./jinronghao.jpg", "./lishuang.jpg", "./fenglei.jpg", "./zhongyuan.jpg", "./guiqiang.jpg", "./zhoulingtao.jpg", "./fanpenghui.jpg", "./lijiaxin.jpg", "./wangxia.jpg", "./danguangjun.jpg", "./yangpengfei.jpg", "./lishichao.jpg", "./wanxiaolin.jpg", "./yangchunhui.jpg", "./linhaohong.jpg", "./shiyixing.jpg", "./linjuan.jpg", "./yangyumeng.jpg", "./tengjialin.jpg", "./luoxin.jpg", "./xiaojiong.jpg", "./lixinlan.jpg", "./rosie.jpg", "./tangshuqin.jpg", "./liuhui.jpg", "./ranyanqiong.jpg", "zhengyinyi.jpg", "./liutiandan.jpg", "./qiuyonglin.jpg");
 
-	var prizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+	// 一等奖奖池
+	var levelOnePrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
 
-	var prizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+	var levelOnePrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+
+	// 二等奖奖池
+	var levelTwoPrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+
+	var levelTwoPrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+
+	// 三等奖奖池
+	var levelThreePrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+
+	var levelThreePrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+
+	// 四等奖奖池
+	var levelFourPrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+
+	var levelFourPrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+
+	// 五等奖奖池
+	var levelFivePrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+
+	var levelFivePrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
 
 	// 当前选中的奖品等级
 	var currentPrizeLevel;
 
-	// 当前选中的人
-	var currentSelectedIndex;
+	// 当前选中的奖品序号
+	var currentPrizeIndex;
+
+	// 当前选中的人的序号
+	var currentSelectedPeopleIndex;
 
 	// 计时器
 	var  timer;
@@ -252,9 +276,10 @@
 			document.getElementById('starbtn').disabled = false;
 		}
 		document.getElementById('prizeBtn').innerHTML = '一等奖';
-		document.getElementById('prizeLabel').innerHTML = prizeArray[0];
-		document.getElementById('prize').src = prizeIconArray[0];
+		document.getElementById('prizeLabel').innerHTML = '一等奖';
+		document.getElementById('prize').src = "./default.jpg";
 		currentPrizeLevel = 1;
+		checkPrizeIsOver();
 	}
 
 	function secondPrizeBtnClick() {
@@ -262,9 +287,10 @@
 			document.getElementById('starbtn').disabled = false;
 		}
 		document.getElementById('prizeBtn').innerHTML = '二等奖';
-		document.getElementById('prizeLabel').innerHTML = prizeArray[1];
-		document.getElementById('prize').src = prizeIconArray[1];
+		document.getElementById('prizeLabel').innerHTML = '二等奖';
+		document.getElementById('prize').src = "./default.jpg";
 		currentPrizeLevel = 2;
+		checkPrizeIsOver();
 	}
 
 	function thirdPrizeBtnClick() {
@@ -272,9 +298,10 @@
 			document.getElementById('starbtn').disabled = false;
 		}
 		document.getElementById('prizeBtn').innerHTML = '三等奖';
-		document.getElementById('prizeLabel').innerHTML = prizeArray[2];
-		document.getElementById('prize').src = prizeIconArray[2];
+		document.getElementById('prizeLabel').innerHTML = '三等奖';
+		document.getElementById('prize').src = "./default.jpg";
 		currentPrizeLevel = 3;
+		checkPrizeIsOver();
 	}
 
 	function fourthPrizeBtnClick() {
@@ -282,9 +309,10 @@
 			document.getElementById('starbtn').disabled = false;
 		}
 		document.getElementById('prizeBtn').innerHTML = '四等奖';
-		document.getElementById('prizeLabel').innerHTML = prizeArray[3];
-		document.getElementById('prize').src = prizeIconArray[3];
+		document.getElementById('prizeLabel').innerHTML = '四等奖';
+		document.getElementById('prize').src = "./default.jpg";
 		currentPrizeLevel = 4;
+		checkPrizeIsOver();
 	}
 
 	function fifthPrizeBtnClick() {
@@ -292,14 +320,16 @@
 			document.getElementById('starbtn').disabled = false;
 		}
 		document.getElementById('prizeBtn').innerHTML = '五等奖';
-		document.getElementById('prizeLabel').innerHTML = prizeArray[4];
-		document.getElementById('prize').src = prizeIconArray[4];
+		document.getElementById('prizeLabel').innerHTML = '五等奖';
+		document.getElementById('prize').src = "./default.jpg";
 		currentPrizeLevel = 5;
+		checkPrizeIsOver();
 	}
 
 	// 点击开始抽奖按钮
 	function starBtnClick() {
-		var btn =document.getElementById('starbtn');
+
+		var btn = document.getElementById('starbtn');
 		if (!isDrawing) {
 			// 如果现在是处于停止状态，则开始抽奖
 			// 必须在剩余人数大于0的时候才能开始抽奖
@@ -313,52 +343,144 @@
 			isDrawing = false;
 			btn.innerHTML='开始抽奖';
 			window.clearInterval(timer);
-			var switchList
+			var switchList;
+			var prizeName;
 			switch (currentPrizeLevel) {
 				case 1:
 					switchList = "winnerOneList";
+					prizeName = levelOnePrizeArray[currentPrizeIndex];
+					levelOnePrizeArray.splice(currentPrizeIndex,1);
 					break;
 				case 2:
 					switchList = "winnerTwoList";
+					prizeName = levelTwoPrizeArray[currentPrizeIndex];
+					levelTwoPrizeArray.splice(currentPrizeIndex,1);
 					break;
 				case 3:
 					switchList = "winnerThreeList";
+					prizeName = levelThreePrizeArray[currentPrizeIndex];
+					levelThreePrizeArray.splice(currentPrizeIndex,1);
 					break;
 				case 4:
 					switchList = "winnerFourList";
+					prizeName = levelFourPrizeArray[currentPrizeIndex];
+					levelFourPrizeArray.splice(currentPrizeIndex,1);
 					break;
 				case 5:
 					switchList = "winnerFiveList";
+					prizeName = levelFivePrizeArray[currentPrizeIndex];
+					levelFivePrizeArray.splice(currentPrizeIndex,1);
 					break;
 				default:
 					break;
 
 			}
 			var list = document.getElementById(switchList)
-			list.innerHTML = list.innerHTML + " " + peopleArray[currentSelectedIndex];
+			list.innerHTML = list.innerHTML + " " + peopleArray[currentSelectedPeopleIndex] + "-" + prizeName;
 			if (peopleArray.length > 0) {
-				peopleArray.splice(currentSelectedIndex,1);
-			};
+				peopleArray.splice(currentSelectedPeopleIndex,1);
+				peopleIconArray.splice(currentSelectedPeopleIndex,1);
+			}
 			if (peopleArray.length == 0) {
 				btn.innerHTML='抽奖结束';
 				btn.disabled = true;
 				isDrawEnd = true;
-			};
+			} else {
+				checkPrizeIsOver()
+			}
 		};
 	}
 
 	function starDraw() {
 		var nameLabel = document.getElementById('nameLabel');
+		var prizeLabel = document.getElementById('prizeLabel');
 		var peopleIcon = document.getElementById('photo');
-		var index = randomNum(0, peopleArray.length - 1);
-		nameLabel.innerHTML = peopleArray[index];
-		peopleIcon.src = peopleIconArray[index];
-		currentSelectedIndex = index
+		var prizeIcon = document.getElementById('prize');
+		var peopleIndex = randomNum(0, peopleArray.length - 1);
+		var prizeName;
+		var prizeIconSrc;
+		switch (currentPrizeLevel) {
+			case 1:
+				currentPrizeIndex = randomNum(0, levelOnePrizeArray.length - 1);
+				prizeName = levelOnePrizeArray[currentPrizeIndex];
+				prizeIconSrc = levelOnePrizeIconArray[currentPrizeIndex];
+				break;
+			case 2:
+				currentPrizeIndex = randomNum(0, levelTwoPrizeArray.length - 1);
+				prizeName = levelTwoPrizeArray[currentPrizeIndex];
+				prizeIconSrc = levelTwoPrizeIconArray[currentPrizeIndex];
+				break;
+			case 3:
+				currentPrizeIndex = randomNum(0, levelThreePrizeArray.length - 1);
+				prizeName = levelThreePrizeArray[currentPrizeIndex];
+				prizeIconSrc = levelThreePrizeIconArray[currentPrizeIndex];
+				break;
+			case 4:
+				currentPrizeIndex = randomNum(0, levelFourPrizeArray.length - 1);
+				prizeName = levelFourPrizeArray[currentPrizeIndex];
+				prizeIconSrc = levelFourPrizeIconArray[currentPrizeIndex];
+				break;
+			case 5:
+				currentPrizeIndex = randomNum(0, levelFivePrizeArray.length - 1);
+				prizeName = levelFivePrizeArray[currentPrizeIndex];
+				prizeIconSrc = levelFivePrizeIconArray[currentPrizeIndex];
+				break;
+			default:
+				break;
+		}
+		nameLabel.innerHTML = peopleArray[peopleIndex];
+		peopleIcon.src = peopleIconArray[peopleIndex];
+		currentSelectedPeopleIndex = peopleIndex;
+		prizeLabel.innerHTML = prizeName;
+		prizeIcon.src = prizeIconSrc;
+	}
+
+	//检查该奖项是不是已经抽完
+	function checkPrizeIsOver() {
+		var isOver = false;
+		switch (currentPrizeLevel) {
+			case 1: 
+				if (levelOnePrizeArray.length <= 0) {
+					isOver = true
+				};
+	        break; 
+	        case 2: 
+	            if (levelTwoPrizeArray.length <= 0) {
+					isOver = true
+				};
+	        break; 
+	        case 3: 
+	            if (levelThreePrizeArray.length <= 0) {
+					isOver = true
+				};
+	        break; 
+	        case 4: 
+	            if (levelFourPrizeArray.length <= 0) {
+					isOver = true
+				};
+	        break; 
+	        case 5: 
+	            if (levelFivePrizeArray.length <= 0) {
+					isOver = true
+				};
+	        break; 
+	        default: 
+	        break;
+		}
+
+		var btn = document.getElementById('starbtn');
+		if (isOver) {
+			btn.innerHTML = "已抽光";
+			btn.disabled = true;
+		} else {
+			btn.innerHTML = "开始抽奖";
+			btn.disabled = false;
+		}
 	}
 
 	//生成从minNum到maxNum的随机整数
 	function randomNum(minNum,maxNum) { 
-	    switch(arguments.length){ 
+	    switch (arguments.length) { 
 	        case 1: 
 	            return parseInt(Math.random()*minNum+1,10); 
 	        break; 
