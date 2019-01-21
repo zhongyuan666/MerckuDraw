@@ -278,6 +278,8 @@
 		document.getElementById('prizeBtn').innerHTML = '一等奖';
 		document.getElementById('prizeLabel').innerHTML = '一等奖';
 		document.getElementById('prize').src = "./default.jpg";
+		document.getElementById('nameLabel').innerHTML = "姓名";
+		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 1;
 		checkPrizeIsOver();
 	}
@@ -289,6 +291,8 @@
 		document.getElementById('prizeBtn').innerHTML = '二等奖';
 		document.getElementById('prizeLabel').innerHTML = '二等奖';
 		document.getElementById('prize').src = "./default.jpg";
+		document.getElementById('nameLabel').innerHTML = "姓名";
+		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 2;
 		checkPrizeIsOver();
 	}
@@ -300,6 +304,8 @@
 		document.getElementById('prizeBtn').innerHTML = '三等奖';
 		document.getElementById('prizeLabel').innerHTML = '三等奖';
 		document.getElementById('prize').src = "./default.jpg";
+		document.getElementById('nameLabel').innerHTML = "姓名";
+		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 3;
 		checkPrizeIsOver();
 	}
@@ -311,6 +317,8 @@
 		document.getElementById('prizeBtn').innerHTML = '四等奖';
 		document.getElementById('prizeLabel').innerHTML = '四等奖';
 		document.getElementById('prize').src = "./default.jpg";
+		document.getElementById('nameLabel').innerHTML = "姓名";
+		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 4;
 		checkPrizeIsOver();
 	}
@@ -322,6 +330,8 @@
 		document.getElementById('prizeBtn').innerHTML = '五等奖';
 		document.getElementById('prizeLabel').innerHTML = '五等奖';
 		document.getElementById('prize').src = "./default.jpg";
+		document.getElementById('nameLabel').innerHTML = "姓名";
+		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 5;
 		checkPrizeIsOver();
 	}
@@ -376,7 +386,7 @@
 
 			}
 			var list = document.getElementById(switchList)
-			list.innerHTML = list.innerHTML + " " + peopleArray[currentSelectedPeopleIndex] + "-" + prizeName;
+			list.innerHTML = list.innerHTML + "\xa0\xa0" + peopleArray[currentSelectedPeopleIndex] + "-" + prizeName;
 			if (peopleArray.length > 0) {
 				peopleArray.splice(currentSelectedPeopleIndex,1);
 				peopleIconArray.splice(currentSelectedPeopleIndex,1);
