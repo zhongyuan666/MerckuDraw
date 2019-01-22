@@ -229,29 +229,29 @@
 	var peopleIconArray = new Array("./alex.jpg", "./shige.jpg", "./xueruini.jpg", "./jinronghao.jpg", "./lishuang.jpg", "./fenglei.jpg", "./zhongyuan.jpg", "./guiqiang.jpg", "./zhoulingtao.jpg", "./fanpenghui.jpg", "./lijiaxin.jpg", "./wangxia.jpg", "./danguangjun.jpg", "./yangpengfei.jpg", "./lishichao.jpg", "./wanxiaolin.jpg", "./yangchunhui.jpg", "./linhaohong.jpg", "./shiyixing.jpg", "./linjuan.jpg", "./yangyumeng.jpg", "./tengjialin.jpg", "./luoxin.jpg", "./xiaojiong.jpg", "./lixinlan.jpg", "./rosie.jpg", "./tangshuqin.jpg", "./liuhui.jpg", "./ranyanqiong.jpg", "zhengyinyi.jpg", "./liutiandan.jpg", "./qiuyonglin.jpg");
 
 	// 一等奖奖池
-	var levelOnePrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+	var levelOnePrizeArray = new Array("京东1800元购物卡");
 
-	var levelOnePrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+	var levelOnePrizeIconArray = new Array("./gouwuka.jpg");
 
 	// 二等奖奖池
-	var levelTwoPrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+	var levelTwoPrizeArray = new Array("AirPods", "华为畅享8手机", "E家乐Q7智能投影仪");
 
-	var levelTwoPrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+	var levelTwoPrizeIconArray = new Array("./airpods.jpeg", "./huawei.jpeg", "./touyingyi.jpeg");
 
 	// 三等奖奖池
-	var levelThreePrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+	var levelThreePrizeArray = new Array("罗莱床上四件套", "美的扫地机器人", "美的微波烤箱一体机", "小米智能电视", "小米空气净化器");
 
-	var levelThreePrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+	var levelThreePrizeIconArray = new Array("./sijiantao.jpg", "./saodijiqiren.jpg", "./weibolu.jpg", "./dianshi.jpg", "./jinghuaqi.jpg");
 
 	// 四等奖奖池
-	var levelFourPrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+	var levelFourPrizeArray = new Array("蓓慈智能足浴按摩盆", "吉米智能控温杯", "小米智能饮水机", "飞利浦电动牙刷", "智米空气加湿器");
 
-	var levelFourPrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+	var levelFourPrizeIconArray = new Array("./zuyupen.jpg", "./baowenbei.jpg", "./yinshuiji.jpg", "./diandongyashua.jpg", "./jiashiqi.jpg");
 
 	// 五等奖奖池
-	var levelFivePrizeArray = new Array("iPhone X", "iPad", "宝马", "奔驰", "奥迪");
+	var levelFivePrizeArray = new Array("京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡");
 
-	var levelFivePrizeIconArray = new Array("./iphone.jpg", "./ipad.jpeg", "./baoma.jpeg", "./benchi.jpeg", "./aodi.jpeg");
+	var levelFivePrizeIconArray = new Array("./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg");
 
 	// 当前选中的奖品等级
 	var currentPrizeLevel;
@@ -360,33 +360,46 @@
 					switchList = "winnerOneList";
 					prizeName = levelOnePrizeArray[currentPrizeIndex];
 					levelOnePrizeArray.splice(currentPrizeIndex,1);
+					levelOnePrizeIconArray.splice(currentPrizeIndex,1);
 					break;
 				case 2:
 					switchList = "winnerTwoList";
 					prizeName = levelTwoPrizeArray[currentPrizeIndex];
 					levelTwoPrizeArray.splice(currentPrizeIndex,1);
+					levelTwoPrizeIconArray.splice(currentPrizeIndex,1);
 					break;
 				case 3:
 					switchList = "winnerThreeList";
 					prizeName = levelThreePrizeArray[currentPrizeIndex];
 					levelThreePrizeArray.splice(currentPrizeIndex,1);
+					levelThreePrizeIconArray.splice(currentPrizeIndex,1);
 					break;
 				case 4:
 					switchList = "winnerFourList";
 					prizeName = levelFourPrizeArray[currentPrizeIndex];
 					levelFourPrizeArray.splice(currentPrizeIndex,1);
+					levelFourPrizeIconArray.splice(currentPrizeIndex,1);
 					break;
 				case 5:
 					switchList = "winnerFiveList";
 					prizeName = levelFivePrizeArray[currentPrizeIndex];
 					levelFivePrizeArray.splice(currentPrizeIndex,1);
+					levelFivePrizeIconArray.splice(currentPrizeIndex,1);
 					break;
 				default:
 					break;
 
 			}
 			var list = document.getElementById(switchList)
-			list.innerHTML = list.innerHTML + "\xa0\xa0" + peopleArray[currentSelectedPeopleIndex] + "-" + prizeName;
+			switch (currentPrizeLevel) {
+				case 5:
+					list.innerHTML = list.innerHTML + "\xa0\xa0" + peopleArray[currentSelectedPeopleIndex];
+					break;
+				default:
+					list.innerHTML = list.innerHTML + "\xa0\xa0" + peopleArray[currentSelectedPeopleIndex] + "-" + prizeName;
+					break;
+
+			}
 			if (peopleArray.length > 0) {
 				peopleArray.splice(currentSelectedPeopleIndex,1);
 				peopleIconArray.splice(currentSelectedPeopleIndex,1);
@@ -417,6 +430,7 @@
 				break;
 			case 2:
 				currentPrizeIndex = randomNum(0, levelTwoPrizeArray.length - 1);
+				console.log(currentPrizeIndex);
 				prizeName = levelTwoPrizeArray[currentPrizeIndex];
 				prizeIconSrc = levelTwoPrizeIconArray[currentPrizeIndex];
 				break;
@@ -492,7 +506,7 @@
 	function randomNum(minNum,maxNum) { 
 	    switch (arguments.length) { 
 	        case 1: 
-	            return parseInt(Math.random()*minNum+1,10); 
+	            return parseInt(Math.random()*maxNum+1,10); 
 	        break; 
 	        case 2: 
 	            return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
