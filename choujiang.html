@@ -184,6 +184,16 @@
       .dropdown:hover .dropdown-content {
         display: block;
       }
+
+      #currentPrizeResidue {
+        position: absolute;
+        text-align: center;
+        color: white;
+        left: 830px;
+        width: 100px;
+        top: 330px;
+        height: 25px;
+      }
     </style>
   </head>
 
@@ -223,6 +233,7 @@
     <p id="nameLabel">姓名</p>
     <p id="prizeLabel">奖品</p>
     <p id="winnerTitle">获奖名单</p>
+    <p id="currentPrizeResidue"></p>
     <p id="winnerOneList">一等奖:</p>
     <p id="winnerTwoList">二等奖:</p>
     <p id="winnerThreeList">三等奖:</p>
@@ -361,7 +372,7 @@
       }
     ];
 
-    // 一等奖奖池
+    // 奖池
     var prizes = {
       1: [
         {
@@ -450,6 +461,7 @@
     // 抽奖是否已经结束
     var isDrawEnd = false;
 
+    // 点击奖品选择按钮
     function prizeLevelClick(level) {
       if (!isDrawEnd) {
         document.getElementById('starbtn').disabled = false;
@@ -462,6 +474,7 @@
       document.getElementById('nameLabel').innerHTML = '姓名';
       document.getElementById('photo').src = './default.jpg';
       currentPrizeLevel = level;
+      document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + prizes[currentPrizeLevel].length;
       checkPrizeIsOver();
     }
 
@@ -496,6 +509,7 @@
         var prizeLevelxPool = prizes[currentPrizeLevel];
         prizeName = prizeLevelxPool[currentPrizeIndex].name;
         prizeLevelxPool.splice(currentPrizeIndex, 1);
+        document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + prizes[currentPrizeLevel].length;
 
         var list = document.getElementById(switchList);
         switch (currentPrizeLevel) {
@@ -524,6 +538,7 @@
       }
     }
 
+    // 开始抽奖
     function starDraw() {
       var nameLabel = document.getElementById('nameLabel');
       var prizeLabel = document.getElementById('prizeLabel');
