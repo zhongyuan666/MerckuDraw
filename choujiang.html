@@ -188,6 +188,16 @@
     display: block;
 }
 
+#currentPrizeResidue {
+	position: absolute;
+	text-align: center;
+	color: white;
+	left: 830px;
+	width: 100px;
+	top: 330px;
+	height: 25px;
+}
+
 
 </style>
 </head>
@@ -214,6 +224,7 @@
 <img id="photo" src="./default.jpg">
 <p id="nameLabel">姓名</p>
 <p id="prizeLabel">奖品</p>
+<p id="currentPrizeResidue"></p>
 <p id="winnerTitle">获奖名单</p>
 <p id="winnerOneList">一等奖: </p>
 <p id="winnerTwoList">二等奖: </p>
@@ -271,6 +282,7 @@
 	// 抽奖是否已经结束
 	var isDrawEnd = false;
 
+	// 一等奖按钮被点击
 	function firstPrizeBtnClick() {
 		if (!isDrawEnd) {
 			document.getElementById('starbtn').disabled = false;
@@ -281,9 +293,11 @@
 		document.getElementById('nameLabel').innerHTML = "姓名";
 		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 1;
+		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelOnePrizeArray.length;
 		checkPrizeIsOver();
 	}
 
+	// 二等奖按钮被点击
 	function secondPrizeBtnClick() {
 		if (!isDrawEnd) {
 			document.getElementById('starbtn').disabled = false;
@@ -294,9 +308,11 @@
 		document.getElementById('nameLabel').innerHTML = "姓名";
 		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 2;
+		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelTwoPrizeArray.length;
 		checkPrizeIsOver();
 	}
 
+	// 三等奖按钮被点击
 	function thirdPrizeBtnClick() {
 		if (!isDrawEnd) {
 			document.getElementById('starbtn').disabled = false;
@@ -307,9 +323,11 @@
 		document.getElementById('nameLabel').innerHTML = "姓名";
 		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 3;
+		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelThreePrizeArray.length;
 		checkPrizeIsOver();
 	}
 
+	// 四等奖按钮被点击
 	function fourthPrizeBtnClick() {
 		if (!isDrawEnd) {
 			document.getElementById('starbtn').disabled = false;
@@ -320,9 +338,11 @@
 		document.getElementById('nameLabel').innerHTML = "姓名";
 		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 4;
+		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelFourPrizeArray.length;
 		checkPrizeIsOver();
 	}
 
+	// 五等奖按钮被点击
 	function fifthPrizeBtnClick() {
 		if (!isDrawEnd) {
 			document.getElementById('starbtn').disabled = false;
@@ -333,6 +353,7 @@
 		document.getElementById('nameLabel').innerHTML = "姓名";
 		document.getElementById('photo').src = "./default.jpg";
 		currentPrizeLevel = 5;
+		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelFivePrizeArray.length;
 		checkPrizeIsOver();
 	}
 
@@ -345,13 +366,13 @@
 			// 必须在剩余人数大于0的时候才能开始抽奖
 			if (peopleArray.length > 0) {
 				isDrawing = true;
-				btn.innerHTML='停止抽奖';
+				btn.innerHTML ='停止抽奖';
 				timer = window.setInterval("starDraw()", 50);
 			}
 		} else {
 			// 如果现在是处于抽奖状态，则停止抽奖
 			isDrawing = false;
-			btn.innerHTML='开始抽奖';
+			btn.innerHTML = '开始抽奖';
 			window.clearInterval(timer);
 			var switchList;
 			var prizeName;
@@ -359,38 +380,43 @@
 				case 1:
 					switchList = "winnerOneList";
 					prizeName = levelOnePrizeArray[currentPrizeIndex];
-					levelOnePrizeArray.splice(currentPrizeIndex,1);
-					levelOnePrizeIconArray.splice(currentPrizeIndex,1);
+					levelOnePrizeArray.splice(currentPrizeIndex, 1);
+					levelOnePrizeIconArray.splice(currentPrizeIndex, 1);
+					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelOnePrizeArray.length;
 					break;
 				case 2:
 					switchList = "winnerTwoList";
 					prizeName = levelTwoPrizeArray[currentPrizeIndex];
-					levelTwoPrizeArray.splice(currentPrizeIndex,1);
-					levelTwoPrizeIconArray.splice(currentPrizeIndex,1);
+					levelTwoPrizeArray.splice(currentPrizeIndex, 1);
+					levelTwoPrizeIconArray.splice(currentPrizeIndex, 1);
+					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelTwoPrizeArray.length;
 					break;
 				case 3:
 					switchList = "winnerThreeList";
 					prizeName = levelThreePrizeArray[currentPrizeIndex];
-					levelThreePrizeArray.splice(currentPrizeIndex,1);
-					levelThreePrizeIconArray.splice(currentPrizeIndex,1);
+					levelThreePrizeArray.splice(currentPrizeIndex, 1);
+					levelThreePrizeIconArray.splice(currentPrizeIndex, 1);
+					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelThreePrizeArray.length;
 					break;
 				case 4:
 					switchList = "winnerFourList";
 					prizeName = levelFourPrizeArray[currentPrizeIndex];
-					levelFourPrizeArray.splice(currentPrizeIndex,1);
-					levelFourPrizeIconArray.splice(currentPrizeIndex,1);
+					levelFourPrizeArray.splice(currentPrizeIndex, 1);
+					levelFourPrizeIconArray.splice(currentPrizeIndex, 1);
+					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelFourPrizeArray.length;
 					break;
 				case 5:
 					switchList = "winnerFiveList";
 					prizeName = levelFivePrizeArray[currentPrizeIndex];
-					levelFivePrizeArray.splice(currentPrizeIndex,1);
-					levelFivePrizeIconArray.splice(currentPrizeIndex,1);
+					levelFivePrizeArray.splice(currentPrizeIndex, 1);
+					levelFivePrizeIconArray.splice(currentPrizeIndex, 1);
+					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelFivePrizeArray.length;
 					break;
 				default:
 					break;
 
 			}
-			var list = document.getElementById(switchList)
+			var list = document.getElementById(switchList);
 			switch (currentPrizeLevel) {
 				case 5:
 					list.innerHTML = list.innerHTML + "\xa0\xa0" + peopleArray[currentSelectedPeopleIndex];
@@ -401,19 +427,20 @@
 
 			}
 			if (peopleArray.length > 0) {
-				peopleArray.splice(currentSelectedPeopleIndex,1);
-				peopleIconArray.splice(currentSelectedPeopleIndex,1);
+				peopleArray.splice(currentSelectedPeopleIndex, 1);
+				peopleIconArray.splice(currentSelectedPeopleIndex, 1);
 			}
 			if (peopleArray.length == 0) {
 				btn.innerHTML='抽奖结束';
 				btn.disabled = true;
 				isDrawEnd = true;
 			} else {
-				checkPrizeIsOver()
+				checkPrizeIsOver();
 			}
 		};
 	}
 
+	// 点击开始抽奖按钮
 	function starDraw() {
 		var nameLabel = document.getElementById('nameLabel');
 		var prizeLabel = document.getElementById('prizeLabel');
@@ -502,14 +529,14 @@
 		}
 	}
 
-	//生成从minNum到maxNum的随机整数
-	function randomNum(minNum,maxNum) { 
+	//生成从[starIndex, endIndex]区间的随机整数，只传一个参数的话生成[0, starIndex]的随机数
+	function randomNum(starIndex, endIndex) { 
 	    switch (arguments.length) { 
 	        case 1: 
-	            return parseInt(Math.random()*maxNum+1,10); 
+	            return parseInt(Math.random() * starIndex + 1, 10); 
 	        break; 
 	        case 2: 
-	            return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
+	            return parseInt(Math.random() * (endIndex - starIndex + 1) + starIndex, 10); 
 	        break; 
 	        default: 
 	            return 0; 
