@@ -1,548 +1,571 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8"> 
-<title>Mercku抽奖</title> 
-<style>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mercku抽奖</title>
+    <style>
+      #title {
+        width: 1200px;
+        margin-top: 100px;
+        text-align: center;
+        color: white;
+        z-index: 2;
+      }
 
-#title {
-	width: 1200px;
-	margin-top: 100px;
-	text-align: center;
-	color: white;
-	z-index: 2;
-}
+      #bgImage {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+      }
 
-#bgImage
-{
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	z-index:-1;
-}
+      #prize {
+        position: absolute;
+        left: 390px;
+        top: 170px;
+        width: 200px;
+        height: 200px;
+        border-radius: 5px;
+      }
 
-#prize {
-	position: absolute;
-	left: 390px;
-	top: 170px;
-	width: 200px;
-	height: 200px;
-	border-radius: 5px;
-}
+      #prizeLabel {
+        position: absolute;
+        text-align: center;
+        color: white;
+        left: 390px;
+        top: 380px;
+        width: 200px;
+        height: 200px;
+      }
 
-#prizeLabel {
-	position: absolute;
-	text-align: center;
-	color: white;
-	left: 390px;
-	top: 380px;
-	width: 200px;
-	height: 200px;
-}
+      #photo {
+        position: absolute;
+        left: 610px;
+        top: 170px;
+        width: 200px;
+        height: 200px;
+        border-radius: 5px;
+      }
 
-#photo {
-	position: absolute;
-	left: 610px;
-	top: 170px;
-	width: 200px;
-	height: 200px;
-	border-radius: 5px;
-}
+      #nameLabel {
+        position: absolute;
+        text-align: center;
+        color: white;
+        left: 610px;
+        top: 380px;
+        width: 200px;
+        height: 200px;
+      }
 
-#nameLabel {
-	position: absolute;
-	text-align: center;
-	color: white;
-	left: 610px;
-	top: 380px;
-	width: 200px;
-	height: 200px;
-}
+      #winnerTitle {
+        position: absolute;
+        text-align: center;
+        color: white;
+        left: 550px;
+        width: 100px;
+        top: 430px;
+        height: 25px;
+      }
 
-#winnerTitle {
-	position: absolute;
-	text-align: center;
-	color: white;
-	left: 550px;
-	width: 100px;
-	top: 430px;
-	height: 25px;
-}
+      #winnerOneList {
+        position: absolute;
+        text-align: left;
+        color: white;
+        left: 100px;
+        width: 1000px;
+        top: 470px;
+        height: 30px;
+      }
 
-#winnerOneList {
-	position: absolute;
-	text-align: left;
-	color: white;
-	left: 100px;
-	width: 1000px;
-	top: 470px;
-	height: 30px;
-}
+      #winnerTwoList {
+        position: absolute;
+        text-align: left;
+        color: white;
+        left: 100px;
+        width: 1000px;
+        top: 500px;
+        height: 30px;
+      }
 
-#winnerTwoList {
-	position: absolute;
-	text-align: left;
-	color: white;
-	left: 100px;
-	width: 1000px;
-	top: 500px;
-	height: 30px;
-}
+      #winnerThreeList {
+        position: absolute;
+        text-align: left;
+        color: white;
+        left: 100px;
+        width: 1000px;
+        top: 530px;
+        height: 30px;
+      }
 
-#winnerThreeList {
-	position: absolute;
-	text-align: left;
-	color: white;
-	left: 100px;
-	width: 1000px;
-	top: 530px;
-	height: 30px;
-}
+      #winnerFourList {
+        position: absolute;
+        text-align: left;
+        color: white;
+        left: 100px;
+        width: 1000px;
+        top: 560px;
+        height: 30px;
+      }
 
-#winnerFourList {
-	position: absolute;
-	text-align: left;
-	color: white;
-	left: 100px;
-	width: 1000px;
-	top: 560px;
-	height: 30px;
-}
+      #winnerFiveList {
+        position: absolute;
+        text-align: left;
+        color: white;
+        left: 100px;
+        width: 1000px;
+        top: 590px;
+        height: 50px;
+      }
 
-#winnerFiveList {
-	position: absolute;
-	text-align: left;
-	color: white;
-	left: 100px;
-	width: 1000px;
-	top: 590px;
-	height: 50px;
-}
+      .btnArea {
+        position: absolute;
+        left: 830px;
+        top: 180px;
+      }
 
-.btnArea {
-	position: absolute;
-    left: 830px;
-    top: 180px;
-}
+      .dropbtn {
+        position: absolute;
+        background-color: #ff3333;
+        color: white;
+        left: 0px;
+        top: 25px;
+        width: 100px;
+        height: 50px;
+        font-size: 16px;
+        border: 2;
+        border-color: white;
+        border-radius: 5px;
+        outline: none;
+      }
 
-.dropbtn {
-	position: absolute;
-    background-color: #FF3333;
-    color: white;
-    left: 0px;
-    top: 25px;
-    width: 100px;
-    height: 50px;
-    font-size: 16px;
-    border: 2;
-    border-color: white;
-    border-radius: 5px;
-    outline: none;
-}
+      .starbtn {
+        position: absolute;
+        background-color: #ff3333;
+        color: white;
+        left: 0px;
+        top: 100px;
+        width: 100px;
+        height: 50px;
+        font-size: 16px;
+        border: 2;
+        border-color: white;
+        border-radius: 5px;
+        outline: none;
+      }
 
-.starbtn {
-	position: absolute;
-    background-color: #FF3333;
-    color: white;
-    left: 0px;
-    top: 100px;
-    width: 100px;
-    height: 50px;
-    font-size: 16px;
-    border: 2;
-    border-color: white;
-    border-radius: 5px;
-    outline: none;
-}
+      .starbtn[disabled] {
+        background-color: #999999;
+      }
 
-.starbtn[disabled] {
-    background-color: #999999;
-}
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 0px;
+        top: 75px;
+        background-color: white;
+        min-width: 100px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        z-index: 999;
+      }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    left: 0px;
-    top: 75px;
-    background-color: white;
-    min-width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border-radius: 5px;
-    z-index: 999;
-}
+      .dropdown-content p {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border-radius: 5;
+      }
 
-.dropdown-content p {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    border-radius: 5;
-}
+      .dropdown-content p:hover {
+        background-color: gray;
+      }
 
-.dropdown-content p:hover {
-	background-color: gray;
-}
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    </style>
+  </head>
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+  <body>
+    <h1 id="title">Mercku年会抽奖</h1>
 
-#currentPrizeResidue {
-	position: absolute;
-	text-align: center;
-	color: white;
-	left: 830px;
-	width: 100px;
-	top: 330px;
-	height: 25px;
-}
+    <div class="btnArea">
+      <button
+        class="starbtn"
+        id="starbtn"
+        onclick="starBtnClick()"
+        disabled="disabled"
+      >
+        开始抽奖
+      </button>
+      <div class="dropdown">
+        <button id="prizeBtn" class="dropbtn">选择奖品</button>
+        <div class="dropdown-content">
+          <p class="prizeLabel" onclick="prizeLevelClick(1)">一等奖</p>
+          <p class="prizeLabel" onclick="prizeLevelClick(2)">二等奖</p>
+          <p class="prizeLabel" onclick="prizeLevelClick(3)">三等奖</p>
+          <p class="prizeLabel" onclick="prizeLevelClick(4)">四等奖</p>
+          <p class="prizeLabel" onclick="prizeLevelClick(5)">五等奖</p>
+        </div>
+      </div>
+    </div>
 
+    <img
+      id="bgImage"
+      src="./bgImage.jpeg"
+      width="1200"
+      height="690"
+      z-index="-1"
+    />
+    <img id="prize" src="./default.jpg" />
+    <img id="photo" src="./default.jpg" />
+    <p id="nameLabel">姓名</p>
+    <p id="prizeLabel">奖品</p>
+    <p id="winnerTitle">获奖名单</p>
+    <p id="winnerOneList">一等奖:</p>
+    <p id="winnerTwoList">二等奖:</p>
+    <p id="winnerThreeList">三等奖:</p>
+    <p id="winnerFourList">四等奖:</p>
+    <p id="winnerFiveList">五等奖:</p>
+  </body>
+  <script>
+    var peopleArray = [
+      {
+        name: 'Alex',
+        avatar: './alex.jpg'
+      },
+      {
+        name: '史歌',
+        avatar: './shige.jpg'
+      },
+      {
+        name: '薛瑞尼',
+        avatar: './xueruini.jpg'
+      },
+      {
+        name: '金荣皓',
+        avatar: './jinronghao.jpg'
+      },
+      {
+        name: '李爽',
+        avatar: './lishuang.jpg'
+      },
+      {
+        name: '冯磊',
+        avatar: './fenglei.jpg'
+      },
+      {
+        name: '钟渊',
+        avatar: './zhongyuan.jpg'
+      },
+      {
+        name: '桂强',
+        avatar: './guiqiang.jpg'
+      },
+      {
+        name: '周陵涛',
+        avatar: './zhoulingtao.jpg'
+      },
+      {
+        name: '范鹏辉',
+        avatar: './fanpenghui.jpg'
+      },
+      {
+        name: '李佳鑫',
+        avatar: './lijiaxin.jpg'
+      },
+      {
+        name: '王侠',
+        avatar: './wangxia.jpg'
+      },
+      {
+        name: '但光军',
+        avatar: './danguangjun.jpg'
+      },
+      {
+        name: '杨朋飞',
+        avatar: './yangpengfei.jpg'
+      },
+      {
+        name: '李施超',
+        avatar: './lishichao.jpg'
+      },
+      {
+        name: '万晓林',
+        avatar: './wanxiaolin.jpg'
+      },
+      {
+        name: '杨春晖',
+        avatar: './yangchunhui.jpg'
+      },
+      {
+        name: '林浩泓',
+        avatar: './linhaohong.jpg'
+      },
+      {
+        name: '施一星',
+        avatar: './shiyixing.jpg'
+      },
+      {
+        name: '林娟',
+        avatar: './linjuan.jpg'
+      },
+      {
+        name: '杨雨濛',
+        avatar: './yangyumeng.jpg'
+      },
+      {
+        name: '滕佳林',
+        avatar: './tengjialin.jpg'
+      },
+      {
+        name: '罗鑫',
+        avatar: './luoxin.jpg'
+      },
+      {
+        name: '肖炯',
+        avatar: './xiaojiong.jpg'
+      },
+      {
+        name: '黎盺岚',
+        avatar: './lixinlan.jpg'
+      },
+      {
+        name: 'Rosie',
+        avatar: './rosie.jpg'
+      },
+      {
+        name: '唐书琴',
+        avatar: './tangshuqin.jpg'
+      },
+      {
+        name: '刘慧',
+        avatar: './liuhui.jpg'
+      },
+      {
+        name: '冉艳琼',
+        avatar: './ranyanqiong.jpg'
+      },
+      {
+        name: '郑颖怡',
+        avatar: 'zhengyinyi.jpg'
+      },
+      {
+        name: '刘田丹',
+        avatar: './liutiandan.jpg'
+      },
+      {
+        name: '仇泳琳',
+        avatar: './qiuyonglin.jpg'
+      }
+    ];
 
-</style>
-</head>
+    // 一等奖奖池
+    var prizes = {
+      1: [
+        {
+          name: '京东1800元购物卡',
+          image: './gouwuka.jpg'
+        }
+      ],
+      2: [
+        {
+          name: 'AirPods',
+          image: './airpods.jpeg'
+        },
+        {
+          name: '华为畅享8手机',
+          image: './huawei.jpeg'
+        },
+        {
+          name: 'E家乐Q7智能投影仪',
+          image: './touyingyi.jpeg'
+        }
+      ],
+      3: [
+        {
+          name: '罗莱床上四件套',
+          image: './sijiantao.jpg'
+        },
+        {
+          name: '美的扫地机器人',
+          image: './saodijiqiren.jpg'
+        },
+        {
+          name: '美的微波烤箱一体机',
+          image: './weibolu.jpg'
+        },
+        {
+          name: '小米智能电视',
+          image: './dianshi.jpg'
+        },
+        {
+          name: '小米空气净化器',
+          image: './jinghuaqi.jpg'
+        }
+      ],
+      4: [
+        {
+          name: '蓓慈智能足浴按摩盆',
+          image: './zuyupen.jpg'
+        },
+        {
+          name: '吉米智能控温杯',
+          image: './baowenbei.jpg'
+        },
+        {
+          name: '小米智能饮水机',
+          image: './yinshuiji.jpg'
+        },
+        {
+          name: '飞利浦电动牙刷',
+          image: './diandongyashua.jpg'
+        },
+        {
+          name: '智米空气加湿器',
+          image: './jiashiqi.jpg'
+        }
+      ],
+      5: new Array(18)
+        .fill(0)
+        .map(a => ({ name: '京东200元购物卡', image: './gouwuka200.jpg' }))
+    };
 
-<body>
-<h1 id="title">Mercku年会抽奖</h1>
+    // 当前选中的奖品等级
+    var currentPrizeLevel;
 
-<div class="btnArea">
-	<button class="starbtn" id="starbtn" onclick="starBtnClick()" disabled="disabled">开始抽奖</button>
-	<div class="dropdown">
-	  <button id="prizeBtn" class="dropbtn">选择奖品</button>
-	  	<div class="dropdown-content">
-	    	<p class="prizeLabel" onclick="firstPrizeBtnClick()">一等奖</p>
-	    	<p class="prizeLabel" onclick="secondPrizeBtnClick()">二等奖</p>
-	    	<p class="prizeLabel" onclick="thirdPrizeBtnClick()">三等奖</p>
-	    	<p class="prizeLabel" onclick="fourthPrizeBtnClick()">四等奖</p>
-	    	<p class="prizeLabel" onclick="fifthPrizeBtnClick()">五等奖</p>
-  		</div>
-	</div>
-</div>
+    // 当前选中的奖品序号
+    var currentPrizeIndex;
 
-<img id="bgImage" src="./bgImage.jpeg" width='1200' height='690' z-index='-1'>
-<img id="prize" src="./default.jpg">
-<img id="photo" src="./default.jpg">
-<p id="nameLabel">姓名</p>
-<p id="prizeLabel">奖品</p>
-<p id="currentPrizeResidue"></p>
-<p id="winnerTitle">获奖名单</p>
-<p id="winnerOneList">一等奖: </p>
-<p id="winnerTwoList">二等奖: </p>
-<p id="winnerThreeList">三等奖: </p>
-<p id="winnerFourList">四等奖: </p>
-<p id="winnerFiveList">五等奖: </p>
+    // 当前选中的人的序号
+    var currentSelectedPeopleIndex;
 
-</body>
-<script>
+    // 计时器
+    var timer;
 
-	var peopleArray = new Array("Alex", "史歌", "薛瑞尼", "金荣皓", "李爽", "冯磊", "钟渊", "桂强", "周陵涛", "范鹏辉", "李佳鑫", "王侠", "但光军", "杨朋飞", "李施超", "万晓林", "杨春晖", "林浩泓", "施一星", "林娟", "杨雨濛", "滕佳林", "罗鑫", "肖炯", "黎盺岚", "Rosie", "唐书琴", "刘慧", "冉艳琼", "郑颖怡", "刘田丹", "仇泳琳");
+    // 是否正在抽奖中
+    var isDrawing = false;
 
-	var peopleIconArray = new Array("./alex.jpg", "./shige.jpg", "./xueruini.jpg", "./jinronghao.jpg", "./lishuang.jpg", "./fenglei.jpg", "./zhongyuan.jpg", "./guiqiang.jpg", "./zhoulingtao.jpg", "./fanpenghui.jpg", "./lijiaxin.jpg", "./wangxia.jpg", "./danguangjun.jpg", "./yangpengfei.jpg", "./lishichao.jpg", "./wanxiaolin.jpg", "./yangchunhui.jpg", "./linhaohong.jpg", "./shiyixing.jpg", "./linjuan.jpg", "./yangyumeng.jpg", "./tengjialin.jpg", "./luoxin.jpg", "./xiaojiong.jpg", "./lixinlan.jpg", "./rosie.jpg", "./tangshuqin.jpg", "./liuhui.jpg", "./ranyanqiong.jpg", "zhengyinyi.jpg", "./liutiandan.jpg", "./qiuyonglin.jpg");
+    // 抽奖是否已经结束
+    var isDrawEnd = false;
 
-	// 一等奖奖池
-	var levelOnePrizeArray = new Array("京东1800元购物卡");
+    function prizeLevelClick(level) {
+      if (!isDrawEnd) {
+        document.getElementById('starbtn').disabled = false;
+      }
+      var prizeText = ['一等奖', '二等奖', '三等奖', '四等奖', '五等奖'];
+      var index = level - 1;
+      document.getElementById('prizeBtn').innerHTML = prizeText[index];
+      document.getElementById('prizeLabel').innerHTML = prizeText[index];
+      document.getElementById('prize').src = './default.jpg';
+      document.getElementById('nameLabel').innerHTML = '姓名';
+      document.getElementById('photo').src = './default.jpg';
+      currentPrizeLevel = level;
+      checkPrizeIsOver();
+    }
 
-	var levelOnePrizeIconArray = new Array("./gouwuka.jpg");
+    // 点击开始抽奖按钮
+    function starBtnClick() {
+      var btn = document.getElementById('starbtn');
+      if (!isDrawing) {
+        // 如果现在是处于停止状态，则开始抽奖
+        // 必须在剩余人数大于0的时候才能开始抽奖
+        if (peopleArray.length > 0) {
+          isDrawing = true;
+          btn.innerHTML = '停止抽奖';
+          timer = window.setInterval(starDraw, 50);
+        }
+      } else {
+        // 如果现在是处于抽奖状态，则停止抽奖
+        isDrawing = false;
+        btn.innerHTML = '开始抽奖';
+        window.clearInterval(timer);
+        var switchList;
+        var prizeName;
 
-	// 二等奖奖池
-	var levelTwoPrizeArray = new Array("AirPods", "华为畅享8手机", "E家乐Q7智能投影仪");
+        var els = [
+          'winnerOneList',
+          'winnerTwoList',
+          'winnerThreeList',
+          'winnerFourList',
+          'winnerFiveList'
+        ];
 
-	var levelTwoPrizeIconArray = new Array("./airpods.jpeg", "./huawei.jpeg", "./touyingyi.jpeg");
+        switchList = els[currentPrizeLevel - 1];
+        var prizeLevelxPool = prizes[currentPrizeLevel];
+        prizeName = prizeLevelxPool[currentPrizeIndex].name;
+        prizeLevelxPool.splice(currentPrizeIndex, 1);
 
-	// 三等奖奖池
-	var levelThreePrizeArray = new Array("罗莱床上四件套", "美的扫地机器人", "美的微波烤箱一体机", "小米智能电视", "小米空气净化器");
+        var list = document.getElementById(switchList);
+        switch (currentPrizeLevel) {
+          case 5:
+            list.innerHTML +=
+              '&nbsp;&nbsp;' + peopleArray[currentSelectedPeopleIndex].name;
+            break;
+          default:
+            list.innerHTML +=
+              '&nbsp;&nbsp;' +
+              peopleArray[currentSelectedPeopleIndex].name +
+              '-' +
+              prizeName;
+            break;
+        }
+        if (peopleArray.length > 0) {
+          peopleArray.splice(currentSelectedPeopleIndex, 1);
+        }
+        if (peopleArray.length == 0) {
+          btn.innerHTML = '抽奖结束';
+          btn.disabled = true;
+          isDrawEnd = true;
+        } else {
+          checkPrizeIsOver();
+        }
+      }
+    }
 
-	var levelThreePrizeIconArray = new Array("./sijiantao.jpg", "./saodijiqiren.jpg", "./weibolu.jpg", "./dianshi.jpg", "./jinghuaqi.jpg");
+    function starDraw() {
+      var nameLabel = document.getElementById('nameLabel');
+      var prizeLabel = document.getElementById('prizeLabel');
+      var peopleIcon = document.getElementById('photo');
+      var prizeIcon = document.getElementById('prize');
+      var peopleIndex = randomNum(0, peopleArray.length - 1);
+      var prizeName;
+      var prizeIconSrc;
 
-	// 四等奖奖池
-	var levelFourPrizeArray = new Array("蓓慈智能足浴按摩盆", "吉米智能控温杯", "小米智能饮水机", "飞利浦电动牙刷", "智米空气加湿器");
+      var prizeLevelxPool = prizes[currentPrizeLevel];
+      currentPrizeIndex = randomNum(0, prizeLevelxPool.length - 1);
+      prizeName = prizeLevelxPool[currentPrizeIndex].name;
+      prizeIconSrc = prizeLevelxPool[currentPrizeIndex].image;
+      nameLabel.innerHTML = peopleArray[peopleIndex].name;
+      peopleIcon.src = peopleArray[peopleIndex].avatar;
+      currentSelectedPeopleIndex = peopleIndex;
+      prizeLabel.innerHTML = prizeName;
+      prizeIcon.src = prizeIconSrc;
+    }
 
-	var levelFourPrizeIconArray = new Array("./zuyupen.jpg", "./baowenbei.jpg", "./yinshuiji.jpg", "./diandongyashua.jpg", "./jiashiqi.jpg");
+    //检查该奖项是不是已经抽完
+    function checkPrizeIsOver() {
+      var isOver = false;
 
-	// 五等奖奖池
-	var levelFivePrizeArray = new Array("京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡", "京东200元购物卡");
+      var prizeLevelxPool = prizes[currentPrizeLevel];
+      if (prizeLevelxPool.length <= 0) {
+        isOver = true;
+      }
 
-	var levelFivePrizeIconArray = new Array("./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg", "./gouwuka200.jpg");
+      var btn = document.getElementById('starbtn');
+      if (isOver) {
+        btn.innerHTML = '已抽光';
+        btn.disabled = true;
+      } else {
+        btn.innerHTML = '开始抽奖';
+        btn.disabled = false;
+      }
+    }
 
-	// 当前选中的奖品等级
-	var currentPrizeLevel;
-
-	// 当前选中的奖品序号
-	var currentPrizeIndex;
-
-	// 当前选中的人的序号
-	var currentSelectedPeopleIndex;
-
-	// 计时器
-	var  timer;
-
-	// 是否正在抽奖中
-	var isDrawing = false;
-
-	// 抽奖是否已经结束
-	var isDrawEnd = false;
-
-	// 一等奖按钮被点击
-	function firstPrizeBtnClick() {
-		if (!isDrawEnd) {
-			document.getElementById('starbtn').disabled = false;
-		}
-		document.getElementById('prizeBtn').innerHTML = '一等奖';
-		document.getElementById('prizeLabel').innerHTML = '一等奖';
-		document.getElementById('prize').src = "./default.jpg";
-		document.getElementById('nameLabel').innerHTML = "姓名";
-		document.getElementById('photo').src = "./default.jpg";
-		currentPrizeLevel = 1;
-		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelOnePrizeArray.length;
-		checkPrizeIsOver();
-	}
-
-	// 二等奖按钮被点击
-	function secondPrizeBtnClick() {
-		if (!isDrawEnd) {
-			document.getElementById('starbtn').disabled = false;
-		}
-		document.getElementById('prizeBtn').innerHTML = '二等奖';
-		document.getElementById('prizeLabel').innerHTML = '二等奖';
-		document.getElementById('prize').src = "./default.jpg";
-		document.getElementById('nameLabel').innerHTML = "姓名";
-		document.getElementById('photo').src = "./default.jpg";
-		currentPrizeLevel = 2;
-		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelTwoPrizeArray.length;
-		checkPrizeIsOver();
-	}
-
-	// 三等奖按钮被点击
-	function thirdPrizeBtnClick() {
-		if (!isDrawEnd) {
-			document.getElementById('starbtn').disabled = false;
-		}
-		document.getElementById('prizeBtn').innerHTML = '三等奖';
-		document.getElementById('prizeLabel').innerHTML = '三等奖';
-		document.getElementById('prize').src = "./default.jpg";
-		document.getElementById('nameLabel').innerHTML = "姓名";
-		document.getElementById('photo').src = "./default.jpg";
-		currentPrizeLevel = 3;
-		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelThreePrizeArray.length;
-		checkPrizeIsOver();
-	}
-
-	// 四等奖按钮被点击
-	function fourthPrizeBtnClick() {
-		if (!isDrawEnd) {
-			document.getElementById('starbtn').disabled = false;
-		}
-		document.getElementById('prizeBtn').innerHTML = '四等奖';
-		document.getElementById('prizeLabel').innerHTML = '四等奖';
-		document.getElementById('prize').src = "./default.jpg";
-		document.getElementById('nameLabel').innerHTML = "姓名";
-		document.getElementById('photo').src = "./default.jpg";
-		currentPrizeLevel = 4;
-		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelFourPrizeArray.length;
-		checkPrizeIsOver();
-	}
-
-	// 五等奖按钮被点击
-	function fifthPrizeBtnClick() {
-		if (!isDrawEnd) {
-			document.getElementById('starbtn').disabled = false;
-		}
-		document.getElementById('prizeBtn').innerHTML = '五等奖';
-		document.getElementById('prizeLabel').innerHTML = '五等奖';
-		document.getElementById('prize').src = "./default.jpg";
-		document.getElementById('nameLabel').innerHTML = "姓名";
-		document.getElementById('photo').src = "./default.jpg";
-		currentPrizeLevel = 5;
-		document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelFivePrizeArray.length;
-		checkPrizeIsOver();
-	}
-
-	// 点击开始抽奖按钮
-	function starBtnClick() {
-
-		var btn = document.getElementById('starbtn');
-		if (!isDrawing) {
-			// 如果现在是处于停止状态，则开始抽奖
-			// 必须在剩余人数大于0的时候才能开始抽奖
-			if (peopleArray.length > 0) {
-				isDrawing = true;
-				btn.innerHTML ='停止抽奖';
-				timer = window.setInterval("starDraw()", 50);
-			}
-		} else {
-			// 如果现在是处于抽奖状态，则停止抽奖
-			isDrawing = false;
-			btn.innerHTML = '开始抽奖';
-			window.clearInterval(timer);
-			var switchList;
-			var prizeName;
-			switch (currentPrizeLevel) {
-				case 1:
-					switchList = "winnerOneList";
-					prizeName = levelOnePrizeArray[currentPrizeIndex];
-					levelOnePrizeArray.splice(currentPrizeIndex, 1);
-					levelOnePrizeIconArray.splice(currentPrizeIndex, 1);
-					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelOnePrizeArray.length;
-					break;
-				case 2:
-					switchList = "winnerTwoList";
-					prizeName = levelTwoPrizeArray[currentPrizeIndex];
-					levelTwoPrizeArray.splice(currentPrizeIndex, 1);
-					levelTwoPrizeIconArray.splice(currentPrizeIndex, 1);
-					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelTwoPrizeArray.length;
-					break;
-				case 3:
-					switchList = "winnerThreeList";
-					prizeName = levelThreePrizeArray[currentPrizeIndex];
-					levelThreePrizeArray.splice(currentPrizeIndex, 1);
-					levelThreePrizeIconArray.splice(currentPrizeIndex, 1);
-					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelThreePrizeArray.length;
-					break;
-				case 4:
-					switchList = "winnerFourList";
-					prizeName = levelFourPrizeArray[currentPrizeIndex];
-					levelFourPrizeArray.splice(currentPrizeIndex, 1);
-					levelFourPrizeIconArray.splice(currentPrizeIndex, 1);
-					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelFourPrizeArray.length;
-					break;
-				case 5:
-					switchList = "winnerFiveList";
-					prizeName = levelFivePrizeArray[currentPrizeIndex];
-					levelFivePrizeArray.splice(currentPrizeIndex, 1);
-					levelFivePrizeIconArray.splice(currentPrizeIndex, 1);
-					document.getElementById('currentPrizeResidue').innerHTML = "剩余数量: " + levelFivePrizeArray.length;
-					break;
-				default:
-					break;
-
-			}
-			var list = document.getElementById(switchList);
-			switch (currentPrizeLevel) {
-				case 5:
-					list.innerHTML = list.innerHTML + "\xa0\xa0" + peopleArray[currentSelectedPeopleIndex];
-					break;
-				default:
-					list.innerHTML = list.innerHTML + "\xa0\xa0" + peopleArray[currentSelectedPeopleIndex] + "-" + prizeName;
-					break;
-
-			}
-			if (peopleArray.length > 0) {
-				peopleArray.splice(currentSelectedPeopleIndex, 1);
-				peopleIconArray.splice(currentSelectedPeopleIndex, 1);
-			}
-			if (peopleArray.length == 0) {
-				btn.innerHTML='抽奖结束';
-				btn.disabled = true;
-				isDrawEnd = true;
-			} else {
-				checkPrizeIsOver();
-			}
-		};
-	}
-
-	// 点击开始抽奖按钮
-	function starDraw() {
-		var nameLabel = document.getElementById('nameLabel');
-		var prizeLabel = document.getElementById('prizeLabel');
-		var peopleIcon = document.getElementById('photo');
-		var prizeIcon = document.getElementById('prize');
-		var peopleIndex = randomNum(0, peopleArray.length - 1);
-		var prizeName;
-		var prizeIconSrc;
-		switch (currentPrizeLevel) {
-			case 1:
-				currentPrizeIndex = randomNum(0, levelOnePrizeArray.length - 1);
-				prizeName = levelOnePrizeArray[currentPrizeIndex];
-				prizeIconSrc = levelOnePrizeIconArray[currentPrizeIndex];
-				break;
-			case 2:
-				currentPrizeIndex = randomNum(0, levelTwoPrizeArray.length - 1);
-				console.log(currentPrizeIndex);
-				prizeName = levelTwoPrizeArray[currentPrizeIndex];
-				prizeIconSrc = levelTwoPrizeIconArray[currentPrizeIndex];
-				break;
-			case 3:
-				currentPrizeIndex = randomNum(0, levelThreePrizeArray.length - 1);
-				prizeName = levelThreePrizeArray[currentPrizeIndex];
-				prizeIconSrc = levelThreePrizeIconArray[currentPrizeIndex];
-				break;
-			case 4:
-				currentPrizeIndex = randomNum(0, levelFourPrizeArray.length - 1);
-				prizeName = levelFourPrizeArray[currentPrizeIndex];
-				prizeIconSrc = levelFourPrizeIconArray[currentPrizeIndex];
-				break;
-			case 5:
-				currentPrizeIndex = randomNum(0, levelFivePrizeArray.length - 1);
-				prizeName = levelFivePrizeArray[currentPrizeIndex];
-				prizeIconSrc = levelFivePrizeIconArray[currentPrizeIndex];
-				break;
-			default:
-				break;
-		}
-		nameLabel.innerHTML = peopleArray[peopleIndex];
-		peopleIcon.src = peopleIconArray[peopleIndex];
-		currentSelectedPeopleIndex = peopleIndex;
-		prizeLabel.innerHTML = prizeName;
-		prizeIcon.src = prizeIconSrc;
-	}
-
-	//检查该奖项是不是已经抽完
-	function checkPrizeIsOver() {
-		var isOver = false;
-		switch (currentPrizeLevel) {
-			case 1: 
-				if (levelOnePrizeArray.length <= 0) {
-					isOver = true
-				};
-	        break; 
-	        case 2: 
-	            if (levelTwoPrizeArray.length <= 0) {
-					isOver = true
-				};
-	        break; 
-	        case 3: 
-	            if (levelThreePrizeArray.length <= 0) {
-					isOver = true
-				};
-	        break; 
-	        case 4: 
-	            if (levelFourPrizeArray.length <= 0) {
-					isOver = true
-				};
-	        break; 
-	        case 5: 
-	            if (levelFivePrizeArray.length <= 0) {
-					isOver = true
-				};
-	        break; 
-	        default: 
-	        break;
-		}
-
-		var btn = document.getElementById('starbtn');
-		if (isOver) {
-			btn.innerHTML = "已抽光";
-			btn.disabled = true;
-		} else {
-			btn.innerHTML = "开始抽奖";
-			btn.disabled = false;
-		}
-	}
-
-	//生成从[starIndex, endIndex]区间的随机整数，只传一个参数的话生成[0, starIndex]的随机数
-	function randomNum(starIndex, endIndex) { 
-	    switch (arguments.length) { 
-	        case 1: 
-	            return parseInt(Math.random() * starIndex + 1, 10); 
-	        break; 
-	        case 2: 
-	            return parseInt(Math.random() * (endIndex - starIndex + 1) + starIndex, 10); 
-	        break; 
-	        default: 
-	            return 0; 
-	        break; 
-	    } 
-	} 
-
-</script>
+    //生成从minNum到maxNum的随机整数
+    function randomNum(minNum, maxNum) {
+      return Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
+    }
+  </script>
 </html>
